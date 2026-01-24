@@ -1,6 +1,8 @@
+/* eslint-disable prettier/prettier */
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as nodemailer from 'nodemailer';
+import { SendChamadoDto } from './dto/send-chamado.dto';
 
 @Injectable()
 export class MailService {
@@ -49,5 +51,23 @@ export class MailService {
       throw new InternalServerErrorException('Falha ao enviar email');
     }
   }
+
+  async enviarChamado(dto: SendChamadoDto) {
+    const { nome, email, telefone, servico } = dto;
+
+    const html = `
+    <h2>Novo Pedido de Serviço</h2>
+    <p><strong>Nome:</strong> ${nome}</p>
+    <p><strong>Email:</strong> ${email}</p>
+    ${telefone ? `<p><strong>Telefone:</strong> ${telefone}</p>` : ''}
+    <p><strong>Serviço:</strong> ${servico}</p>
+  `;
+
+    await this.sendEmail(
+      [email, 'neomamlight@hotmail.com', 'admin@firstmedia.pt'],
+      'Novo Pedido de Serviço - Tech Manlight',
+      '',
+      html,
+    );
+  }
 }
- 

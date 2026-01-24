@@ -1,6 +1,15 @@
-import { Controller, Get, Post, Body, Param, Delete, Put } from '@nestjs/common';
-import { AppointmentService } from './appointment.service';
+/* eslint-disable prettier/prettier */
+import {
+  Body,
+  Controller,
+  Delete,
+  Get,
+  Param,
+  Post,
+  Put,
+} from '@nestjs/common';
 import { Prisma } from '@prisma/client';
+import { AppointmentService } from './appointment.service';
 
 @Controller('appointments')
 export class AppointmentController {
