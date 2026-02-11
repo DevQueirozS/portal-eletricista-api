@@ -12,5 +12,11 @@ export class SendChamadoDto {
   telefone?: string;
 
   @IsNotEmpty()
+  local: string;
+
+  @IsNotEmpty()
+  dataHora: string;
+
+  @IsNotEmpty()
   servico: string;
 }

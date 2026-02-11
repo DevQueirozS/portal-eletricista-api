@@ -53,13 +53,15 @@ export class MailService {
   }
 
   async enviarChamado(dto: SendChamadoDto) {
-    const { nome, email, telefone, servico } = dto;
+    const { nome, email, telefone, local, dataHora, servico } = dto;
 
     const html = `
     <h2>Novo Pedido de Serviço</h2>
     <p><strong>Nome:</strong> ${nome}</p>
     <p><strong>Email:</strong> ${email}</p>
     ${telefone ? `<p><strong>Telefone:</strong> ${telefone}</p>` : ''}
+    <p><strong>Local:</strong> ${local}</p>
+    <p><strong>Data e Horário:</strong> ${dataHora}</p>
     <p><strong>Serviço:</strong> ${servico}</p>
   `;
 
